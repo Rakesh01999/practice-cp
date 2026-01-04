@@ -1,53 +1,60 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
 
-class Node
-{
-public:
-    int val;
-    Node *next;
-    Node(int val)
-    {
+class Node{
+    public:
+        int val;
+        Node* next;
+    Node(int val){
         this->val = val;
         this->next = NULL;
     }
 };
 
-void print_list(Node *head)
-{
-    Node *temp = head;
-    while (temp != NULL)
+void insert_at_tail(Node* &head, Node* &tail, int val){
+    Node* newNode = new Node(val);
+    if(head == NULL)
     {
-        cout << temp->val << endl;
-        temp = temp->next;
+        head = newNode;
+        tail = newNode;
+        return;
     }
+    tail->next = newNode;
+    tail = newNode ;
 }
 
-void insert_at_tail_opt(Node* head, Node* &tail, int val){
-    Node* newNode = new Node(val);
-    if(head == NULL){
-        head = newNode ;
-        tail = newNode;
+// void print_list(Node* head){
+//     Node* temp = head;
+//     while(temp != NULL)
+//     {
+//         cout<<temp->val<<endl;
+//         temp=temp->next;
+//     }
+// }
+
+void print_list(Node* temp){
+    if(temp == NULL)
+    {
         return ;
     }
-    tail->next=newNode;
-    tail = newNode;
+    print_list(temp->next);
+    cout<<temp->val<<endl;
 }
 
 int main()
 {
-    Node *head = new Node(10);
-    Node *a = new Node(20);
-    Node *b = new Node(30);
-    Node *tail = new Node(40);
+    Node* head =NULL;
+    Node* tail =NULL;
 
-    head->next = a;
-    a->next = b;
-    b->next = tail;
-
-    insert_at_tail_opt(head, tail, 100);
-    print_list(head);
-
+    int val;
+    while (true)
+    {
+        cin>>val;
+        if(val == -1)   
+            break;
+        insert_at_tail(head, tail, val);
+    }
+    print_list(head);    
     return 0;
 }
+
