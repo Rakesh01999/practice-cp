@@ -23,7 +23,7 @@ void print_list(Node *head)
     }
 }
 
-void delete_at_any_pos(Node *&head, Node *&tail, int idx)
+void delete_at_tail(Node *&head, Node *&tail, int idx)
 {
     Node *temp = head;
     for (int i = 0; i < idx - 1; i++)
@@ -32,6 +32,7 @@ void delete_at_any_pos(Node *&head, Node *&tail, int idx)
     }
     Node *deleteNode = temp->next;
     temp->next = temp->next->next;
+    delete deleteNode;
     tail = temp;
 }
 
@@ -62,9 +63,10 @@ int main()
         insert_at_tail(head, tail, val);
     }
 
-    delete_at_any_pos(head, tail, 3);
+    delete_at_tail(head, tail, 3);
 
     print_list(head);
-
+    
+    cout<<"tail : "<<tail->val<<endl;
     return 0;
 }
