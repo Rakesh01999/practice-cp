@@ -1,22 +1,40 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+vector<int>adj_list[1005];
+int vis[1005];
+
+void bfs(int src){
+    queue<int>q;
+    q.push(src);
+    vis[src]=true;
+
+    while(!q.empty()){
+        // node ber koro
+        int par=q.front();
+        q.pop();
+
+        // node niye kaj
+        cout<<par<<" ";
+
+        // child push
+        for(int child:adj_list[par]){
+            if(!vis[child]){
+                q.push(child);
+                vis[child]=true;
+            }
+        }
+    }
+}
+
 int main(){
     int n, e;cin>>n>>e;
-    vector<int>adj_list[n];
     while(e--){
         int a, b;cin>>a>>b;
         adj_list[a].push_back(b);
         adj_list[b].push_back(a);
     }
-
-    for(int i=0; i<n; i++)
-    {
-        cout<<i<<" -> ";
-        for(auto it: adj_list[i]){
-            cout<<it<<" ";
-        }
-        cout<<endl;
-    }
+    memset(vis, false, sizeof(vis));
+    bfs(0);
     return 0;
 }
