@@ -3,18 +3,15 @@ using namespace std;
 
 int main(){
     int n, e;cin>>n>>e;
-    vector<int>adj_list[n];
+    vector<pair<int, int>> edge_list;
     while(e--){
         int a, b;cin>>a>>b;
-        adj_list[a].push_back(b);
-        adj_list[b].push_back(a);
+        edge_list.push_back({a, b});
     }
-    for(int i=0;i<n;i++){
-        cout<<i<<"->";
-        for(auto it:adj_list[i]){
-            cout<<it<<" ";
-        }
-        cout<<endl;
+    cout<<endl<<"Output: "<<endl;
+
+    for(pair<int, int>p: edge_list){
+        cout<<p.first<<" "<<p.second<<endl;
     }
-    return 0;   
+    return 0;
 }
