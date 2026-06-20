@@ -1,43 +1,54 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 vector<int> adj_list[105];
 bool vis[105];
+queue<int>q;
 
-void dfs(int src)
-{
-    vis[src] = true;
-    // cout<<src<<" ";
-    for (int child : adj_list[src])
-    {
-        if (!vis[child])
-        {
-            dfs(child);
+void bfs(int src){
+    q.push(src);
+    vis[src]=true;
+    while(!q.empty()){
+        // node ber koro
+        int par=q.front();
+        q.pop();
+        
+        // node niye kaj
+        cout<<par<<" ";
+
+        // child push
+        for(int child:adj_list[par]){
+            if(!vis[child]){
+                q.push(child);
+                vis[child]=true;
+            }
         }
     }
 }
 
-int main()
-{
-    int n, e;
-    cin >> n >> e;
-    while (e--)
-    {
-        int a, b;
-        cin >> a >> b;
+int main(){
+    int n, e;cin >> n >> e;
+    while(e--){
+        int a, b;cin>>a>>b;
         adj_list[a].push_back(b);
         adj_list[b].push_back(a);
     }
-    memset(vis, false, sizeof(vis));
-    int cnt = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (!vis[i])
-        {
-            dfs(i);
-            cnt++;
-        }
-    }
-    cout << cnt << endl;
+    cout<<"output : "<<endl;
+    bfs(0);
+    
     return 0;
 }
+
+
+
+
+// input:
+// 5 5
+// 0 1
+// 1 2
+// 0 3 
+// 1 3
+// 2 4
+
+// output : 
+// 0 1 2 4 3 
