@@ -17,7 +17,7 @@ bool valid(int i, int j)
     return true;
 }
 
-void dfs(int si, int sj)
+void bfs(int si, int sj)
 {
     queue<pair<int, int>> q;
     q.push({si, sj});
@@ -55,7 +55,7 @@ int main()
     memset(vis, false, sizeof(vis));
     int si, sj;
     cin >> si >> sj;
-    dfs(si, sj);
+    bfs(si, sj);
 
     return 0;
 }
