@@ -1,41 +1,58 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> adj_list[105];
-bool vis[105];
-queue<int>q;
+char grid[105][105];
+bool vis[105][105];
+vector<pair<int, int>>d={{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+int n, m;
+queue<pair<int, int>>q;
 
-void bfs(int src){
-    q.push(src);
-    vis[src]=true;
+bool valid(int ci, int cj){
+    if(ci<0 || cj<0 || ci>=n || cj>=m)
+        return false;
+    return true;
+}
+
+void bfs(int si, int sj){
+    q.push({si, sj});
+    vis[si][sj]=true;
     while(!q.empty()){
         // node ber koro
-        int par=q.front();
+        int par_i=q.front().first;
+        int par_j=q.front().second;
         q.pop();
-        
+
         // node niye kaj
-        cout<<par<<" ";
+        cout<<par_i<<" "<<par_j<<endl;
 
         // child push
-        for(int child:adj_list[par]){
-            if(!vis[child]){
-                q.push(child);
-                vis[child]=true;
+        for(int i=0;i<4;i++){
+            int ci=par_i + d[i].first;
+            int cj=par_j + d[i].second;
+            if(valid(ci, cj) && !vis[ci][cj]){
+                q.push({ci, cj});
+                vis[ci][cj]=true;
             }
         }
     }
 }
 
 int main(){
-    int n, e;cin >> n >> e;
-    while(e--){
-        int a, b;cin>>a>>b;
-        adj_list[a].push_back(b);
-        adj_list[b].push_back(a);
+    cin>>n>>m;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>grid[i][j];
+        }
     }
-    cout<<"output : "<<endl;
-    bfs(0);
-    
+    memset(vis, false, sizeof(vis));
+    // cout<<"output:"<<endl;
+    // for(int i=0;i<n;i++){
+    //     for(int j=0;j<m;j++){
+    //         cout<<grid[i][j]<<" ";
+    //     }cout<<endl;
+    // }
+    int si, sj;cin>>si>>sj;
+    bfs(si, sj);
     return 0;
 }
 
@@ -43,12 +60,11 @@ int main(){
 
 
 // input:
-// 5 5
-// 0 1
+// 3 4
+// ....
+// ....
+// ....
 // 1 2
-// 0 3 
-// 1 3
-// 2 4
 
 // output : 
-// 0 1 2 4 3 
+
