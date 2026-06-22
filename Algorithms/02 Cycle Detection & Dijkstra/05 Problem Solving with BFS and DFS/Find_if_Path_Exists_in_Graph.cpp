@@ -1,3 +1,33 @@
+/*
+Intuition
+This is a connectivity problem in a graph.
+
+If we can reach destination starting from source by traversing edges, the answer is true.
+Otherwise, false.
+We can solve this using:
+
+DFS / BFS → explore all reachable nodes from source.
+Approach
+Build an adjacency list from the given edges.
+
+Use a visited array to avoid revisiting nodes.
+
+Run DFS starting from source.
+
+After DFS, check if destination is marked visited.
+
+Return the result.
+
+Complexity
+Time complexity:
+O(N+E)
+
+Space complexity:
+O(N+E)
+
+Code
+*/
+
 class Solution {
 public:
     vector<int> adj_list[200005];
