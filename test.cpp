@@ -23,9 +23,17 @@ int main(){
     b->next=c;
 
     // cout<<head->val<<" "<<a->val<<" "<<b->val<<" "<<c->val<<endl;
-    cout<<head->val<<" ";
-    cout<<head->next->val<<" ";
-    cout<<head->next->next->val<<" ";
-    cout<<head->next->next->next->val<<" ";
+    // cout<<head->val<<" ";
+    // cout<<head->next->val<<" ";
+    // cout<<head->next->next->val<<" ";
+    // cout<<head->next->next->next->val<<" ";
 
+    Node* temp=head;
+
+    while (temp != NULL)
+    {
+        cout<<temp->val<<" ";
+        temp=temp->next;
+    }cout<<endl;
+    
 }
