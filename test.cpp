@@ -11,29 +11,36 @@ class Node{
     }
 };
 
-int main(){
-    // Node a(10), b(20), c(30);
-    Node* head=new Node(10);
-    Node* a=new Node(30);
-    Node* b=new Node(40);
-    Node* c=new Node(50);
-    
-    head->next=a;
-    a->next=b;
-    b->next=c;
-
-    // cout<<head->val<<" "<<a->val<<" "<<b->val<<" "<<c->val<<endl;
-    // cout<<head->val<<" ";
-    // cout<<head->next->val<<" ";
-    // cout<<head->next->next->val<<" ";
-    // cout<<head->next->next->next->val<<" ";
-
+void print_linked_list(Node* &head){
     Node* temp=head;
-
-    while (temp != NULL)
-    {
+    while(temp != NULL){
         cout<<temp->val<<" ";
         temp=temp->next;
     }cout<<endl;
-    
+}
+
+void insert_linked_list(Node* &head, Node* &tail, int val){
+    Node* newNode=new Node(val);
+    if(head==NULL){
+        head=newNode;
+        tail=newNode;
+        return ;
+    }
+    tail->next=newNode;
+    tail=newNode;
+}
+
+int main(){
+    Node* head=NULL;
+    Node* tail=NULL;
+
+    int val;
+    while(true){
+        cin>>val;
+        if(val==-1){
+            break;
+        }
+        insert_linked_list(head, tail, val);
+    }
+    print_linked_list(head);
 }
