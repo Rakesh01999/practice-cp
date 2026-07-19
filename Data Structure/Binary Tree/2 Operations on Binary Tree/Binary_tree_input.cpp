@@ -85,3 +85,9 @@ int main()
     lavelOrder(root);
     return 0;
 }
+
+
+// input
+// 10 20 30 40 -1 50 60 -1 -1 -1 -1 -1 -1
+// output
+// 10 20 30 40 50 60 
