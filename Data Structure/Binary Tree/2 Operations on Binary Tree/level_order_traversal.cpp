@@ -18,7 +18,7 @@ void level_order(Node* root){
     q.push(root);
     while (!q.empty())
     {
-        // 1. বের করাা 
+        // 1. নোড বের করা
         Node*  f = q.front();
         q.pop();
 
